@@ -1,26 +1,19 @@
 var express = require('express')
 var app = express();
 var handlebars = require('express3-handlebars').create({defaultLayout:'main'});
+var fortune = require('./lib/fortune.js');
 
 app.engine('handlebars',handlebars.engine);
 app.set('view engine','handlebars');
 app.set('port',process.env.PORT || 9527);
 app.use(express.static(__dirname+'/public'));
 
-var fortunes = [
-	"Winter is Coming.",
-	"Hear Me Roar.",
-	"Fire and Blood.",
-	"Our Blades Are Sharp.",
-	];
-
 //Routing
 app.get('/',function(req,res){
 	res.render('home')
 });
 app.get('/about',function(req,res){
-	var randomFortune = fortunes[Math.floor(Math.random()*fortunes.length)];
-	res.render('about',{fortune:randomFortune});
+	res.render('about',{fortune:fortune.getFortune()});
 })
 //Custom 404
 app.use(function(req,res,next){
