@@ -1,0 +1,18 @@
+{
+  "name": "wdne_oreilly",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.0.0",
+    "express": "^4.15.3",
+    "express3-handlebars": "^0.5.2",
+    "mocha": "^3.4.2",
+    "nodemon": "^1.11.0"
+  }
+}
