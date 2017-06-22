@@ -1,0 +1,2 @@
+Using jquery-file-upload-middleware to accomplish IMG uploading through JQuery.
+'jquery-fileUpload' it says.
