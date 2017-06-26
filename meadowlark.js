@@ -136,10 +136,10 @@ switch(app.get('env')){
 		break;
 	case 'production':
 		mongoose.connect(credentials.mongo.production.connectionString,opts);
-		breaks;
+		break;
 	default:
 		throw new Error('Execution Environment Unsettled: '+ app.get('env'));
-};
+}
 var Vacation = require('./models/vacation.js');
 
 Vacation.find(function(err,vacations){
