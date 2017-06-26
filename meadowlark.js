@@ -189,7 +189,7 @@ Vacation.find(function(err,vacations){
 	}).save();
 });
 
-var VacationInSeasonListener = require('./modles/vacationInSeasonListener.js');
+var VacationInSeasonListener = require('./models/vacationInSeasonListener.js');
 
 
 //=====Routing=====
