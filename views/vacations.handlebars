@@ -5,10 +5,10 @@
     <p>{{description}}</p>
     {{#if inSeason}}
     <span class="price">{{price}}</span>
-    <a href="/cart/add?sku={{sku}}" class="btn btn-default">Buy Now!</a> {{else}}
-    <span class="outOfSeason">We're sorry, this vacation is currently not in season.
+    <a href="/cart/add?sku={{sku}}" class="btn btn-default">Check In</a> {{else}}
+    <span class="outOfSeason">We're sorry, this item is currently not in season.
         {{! The "notify me when this vacation is in season" page will be our next task. }}
-        <a href="/notify-me-when-in-season?sku={{sku}}">Notify me when this vacation is in season.</a>
+        <a href="/notify-me-when-in-season?sku={{sku}}">Notify me when it is in season.</a>
     {{/if}}
 </div>
 {{/each}}

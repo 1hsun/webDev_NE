@@ -189,7 +189,54 @@ Vacation.find(function(err,vacations){
 	}).save();
 });
 
+var VacationInSeasonListener = require('./modles/vacationInSeasonListener.js');
+
+
 //=====Routing=====
+//DB data retrieve
+app.get('/vacations',function(req,res){
+	Vacation.find({ available:true }, function(err,vacations){
+		var context = {
+			vacations:vacations.map(function(vacation){
+				return {
+					sku: vacation.sku,
+					name: vacation.name,
+					description: vacation.description,
+					price: vacation.getDisplayPrice(),
+					inSeason: vacation.inSeason,
+				}
+			})
+		};
+		res.render('vacation',context);
+	});
+});
+app.get('/notify-me-when-in-season',function(req,res){
+	res.render('notify-me-when-in-season',{ sku:req.query.sku });
+})
+app.post('/notify-me-when-in-season',function(req,res){
+	VacationInSeasonListener.update(
+		{ email:req.body.email },
+		{ $push: { skus:req.body.sku } },
+		{ upsert: true },
+		function(err){
+			if(err){
+				console.error(err.stack);
+				req.session.flash = {
+					type:'danger',
+					intro:'Oops :(',
+					message:'Error occurred at processing.',
+				};
+			}
+			req.session.flash = {
+				type:'success',
+				intro:'Thanks',
+				message:'You will be notified.',
+			};
+			return res.redirect(303,'/vacations');
+		}
+	);
+});
+
 app.get('/',function(req,res){
 	res.render('home');
 });
@@ -258,23 +305,6 @@ app.get('/fail',function(req,res){
 app.get('/epic-fail',function(req,res){
 	process.nextTick(function(){
 		throw new Error('\{ Bazinga \}')
-	});
-});
-//DB data retrieve
-app.get('/vacations',function(req,res){
-	Vacation.find({ available:true }, function(err,vacations){
-		var context = {
-			vacations:vacations.map(function(vacation){
-				return {
-					sku: vacation.sku,
-					name: vacation.name,
-					description: vacation.description,
-					price: vacation.getDisplayPrice(),
-					inSeason: vacation.inSeason,
-				}
-			})
-		};
-		res.render('vacation',context);
 	});
 });
 
