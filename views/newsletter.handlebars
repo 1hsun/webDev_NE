@@ -1,7 +1,7 @@
 <div class="formContainer">
     <h2>Sign up for newsletter.</h2>
-    <form class="newsletterForm" role="form" action="/process?form=newsletter" method="POST">
-        <input type="hidden" name="_csrf" value="{{csrf}}">
+    <form class="newsletterForm" role="form" action="/newsletter" method="POST">
+        <input type="hidden" name="_csrf" value="{{_csrfToken}}">
         <div class="form-group">
             <label for="fieldName" class="col-sm-2 control-label">Name</label>
             <div class="col-sm-4">

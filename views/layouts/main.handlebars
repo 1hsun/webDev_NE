@@ -6,28 +6,38 @@
 		<link rel="stylesheet" type="text/css" href="/vendor/mocha.css">
 	{{/if}}
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="{{static '/css/main.css'}}">
+	<script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+	<script src="{{static '/js/meadowlark.min.js'}}"></script>
+	<link rel="stylesheet" href="{{static '/css/meadowlark.min.1aac36fc.css'}}">
 
 	{{{_sections.head}}}
 </head>
 <body>
 	<header>
-		<img src="/img/logo.png" alt="Meadowlark Logo" style="width:100px;height: 100px">
+		<img src="{{logoImage}}" alt="Meadowlark Logo" style="width:100px;height: 100px">
 	</header>
-
-	{{#if flash}}
-	<div class="alert alert-dismissible alert-{{flash.type}}">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="ture">
-			&times;
-		</button>
-		<strong>
-			{{flash.intro}}
-		</strong>
-		{{{flash.message}}}
-	</div>
-	{{/if}}
-	{{{body}}}
-
+	<div class="container">
+		{{#if flash}}
+			<div class="alert alert-dismissible alert-{{flash.type}}">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="ture">
+					&times;
+				</button>
+				<strong>
+					{{flash.intro}}
+				</strong>
+				{{{flash.message}}}
+			</div>
+		{{/if}}
+		
+		{{{body}}}
+		
+		<hr>
+		<footer>
+			<p>Meadowlark&reg;</p>
+		</footer>
+	</div><!--Container Ends-->
+	
 	<script src="//code.jquery.com/jquery-2.0.2.min.js"></script>
 	{{{_sections.jquery}}}
 
